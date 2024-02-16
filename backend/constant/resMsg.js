@@ -1,8 +1,6 @@
  const RES_MSG = {
     COMMON: {
       FILE_UPLOAD_SUCCESS: 'File uploded succesfully',
-      DUPLICATE_BATCHID:"Duplicate batchId",
-      DUPLICATE_RECORDS_FOUND:"Duplicate Records Found",
       AUTHORIZATION_ERROR:"Missing UserId",
       EMAIL_SEND_SUCCESSFULLY:"Email sent successfully",
       SUCCESS:"success",
