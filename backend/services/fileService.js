@@ -1,22 +1,32 @@
 const fileModel = require('../models/fileModel');
-const encryptionService = require('./../services/encryptService');
 const cachingService = require('../../backend/services/catchingService');
+
 async function saveFile(fileData) {
-  // Simulated encryption for demonstration purposes
-  const encryptedData = encryptionService.encrypt(fileData.buffer);
+  try {
+    const existingFile = await fileModel.findOne({ originalName: fileData.originalname });
+    let version = 1;
+    if (existingFile) {
+      version = existingFile.version + 1;
+    }
+    // Create a record in the database 
+    const savedFile = await fileModel.create({
+      originalName: fileData.originalname,
+      mimeType: fileData.mimetype,
+      size: fileData.size,
+      data: fileData.buffer,
+      version: version,
+    });
 
-  const savedFile = await fileModel.create({
-    originalName: fileData.originalname,
-    mimeType: fileData.mimetype,
-    size: fileData.size,
-    data: encryptedData,
-  });
+    // Simulated caching for demonstration purposes
+    cachingService.cacheFile(savedFile);
 
-  // Simulated caching for demonstration purposes
-  cachingService.cacheFile(savedFile);
-
-  return savedFile;
+    return savedFile;
+  } catch (error) {
+    // Handle errors appropriately
+    throw new Error('Error saving file: ' + error.message);
+  }
 }
+
 
 async function getFiles() {
   // Simulated caching for demonstration purposes

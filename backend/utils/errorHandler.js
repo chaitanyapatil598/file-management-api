@@ -1,5 +1,4 @@
 // baseError.js
-
 class ErrorHandler extends Error {
     constructor (massage, statusCode) {
     super(massage)
