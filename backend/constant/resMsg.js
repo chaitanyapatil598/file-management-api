@@ -10,6 +10,7 @@
       UNAUTHORIZED:"Unauthorized - Invalid Token",
       FILE_NOT_UPLOAD: 'File Not Upload',
       FILE_SEARCH_SUCCESS:"file Found!",
+      NO_DATA_FOUND:"No data found"
     }
   }
   

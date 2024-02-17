@@ -29,13 +29,6 @@ async function saveFile(fileData) {
 
 
 async function getFiles() {
-  // Simulated caching for demonstration purposes
-  const cachedFiles = cachingService.getCachedFiles();
-
-  if (cachedFiles) {
-    return cachedFiles;
-  }
-
   const files = await fileModel.find();
   cachingService.cacheFiles(files);
 

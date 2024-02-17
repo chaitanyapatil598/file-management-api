@@ -78,7 +78,7 @@ const searchFiles = catchAsyncErrors(async (req, res) => {
       );
     }else{
       return responseHandler.MasterHandleBody(
-        new MastersResponseBody(RES_CODE[200], RES_MSG.COMMON.FILE_SEARCH_SUCCESS, result),
+        new MastersResponseBody(RES_CODE[200], RES_MSG.COMMON.FILE_SEARCH_SUCCESS, {data:result,Count:result.length}),
         res
       );
     }
